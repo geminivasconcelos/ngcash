@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = React.useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -13,24 +13,24 @@ export default function Login() {
     message: "",
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     setForm({
       ...form,
       [event.target.name]: event.target.value,
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     let users = [];
     if (localStorage.getItem("users")) {
       users = JSON.parse(localStorage.getItem("users"));
       const user = users.find(
-        (u) => u.email === form.email && u.password === form.password
+        (u) => u.username === form.username && u.password === form.password
       );
       if (user) {
         users.push(user);
-        localStorage.setItem("token", btoa(user.email));
+        localStorage.setItem("token", btoa(user.username));
         setWarning({ show: false, message: "" });
         // navigate('/Calculation');
         console.log("passou");
@@ -56,11 +56,11 @@ export default function Login() {
           <div className="div-login">
             <input
               className="inputs"
-              type="email"
+              type="text"
               placeholder="Login"
-              value={form.email}
+              value={form.username}
               onChange={handleChange}
-              name="email"
+              name="username"
             />
           </div>
 
