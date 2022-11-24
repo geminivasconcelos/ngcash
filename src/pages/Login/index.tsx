@@ -1,8 +1,10 @@
 import "./style.scss";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const [form, setForm] = React.useState({
     username: "",
     password: "",
@@ -32,8 +34,8 @@ export default function Login() {
         users.push(user);
         localStorage.setItem("token", btoa(user.username));
         setWarning({ show: false, message: "" });
-        // navigate('/Calculation');
-        console.log("passou");
+        navigate("/Dashboard");
+        // console.log("passou");
       } else {
         setWarning({ show: true, message: "Usuário ou senha inválidos" });
       }
