@@ -8,7 +8,7 @@ export default function Register() {
 
   const [form, setForm] = React.useState({
     name: "",
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -26,7 +26,7 @@ export default function Register() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    if (form.name === "" || form.email === "" || form.password === "") {
+    if (form.name === "" || form.username === "" || form.password === "") {
       setWarning({
         show: true,
         message: "Preencha todos os campos",
@@ -44,7 +44,7 @@ export default function Register() {
     if (localStorage.getItem("users")) {
       users = JSON.parse(localStorage.getItem("users"));
     }
-    const user = users.find((u) => u.email === form.email);
+    const user = users.find((u) => u.username === form.username);
     if (user) {
       setWarning({
         show: true,
@@ -61,7 +61,7 @@ export default function Register() {
       localStorage.setItem("users", JSON.stringify(users));
       setForm({
         name: "",
-        email: "",
+        username: "",
         password: "",
       });
       setTimeout(() => {
@@ -88,10 +88,10 @@ export default function Register() {
           />
           <input
             className="input-cadastro"
-            type="email"
-            placeholder="email"
-            name="email"
-            value={form.email}
+            type="text"
+            placeholder="usuário"
+            name="username"
+            value={form.username}
             onChange={handleChange}
           />
           <input
